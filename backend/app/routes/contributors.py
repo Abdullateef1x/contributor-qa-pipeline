@@ -30,4 +30,11 @@ async def create_contributor(data: ContributorCreate, db: AsyncSession = Depends
     return contributor
 
 
+@router.get("/{contributor_id}")
+async def get_contributor(contributor_id: str, db: AsyncSession = Depends(get_db)):
+    contributor = await db.get(Contributor, contributor_id)
+
+    if not contributor:
+        raise HTTPException(status_code = 404, detail = "Contributor not found")
+    return contributor
 
