@@ -29,6 +29,13 @@ async def create_contributor(data: ContributorCreate, db: AsyncSession = Depends
     await db.refresh(contributor)
     return contributor
 
+@router.get("/")
+async def list_contributors(data: ContributorCreate, db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(Contributor)).order_by(Contributor.created_at.desc())
+    contributors = await result.scalars().all()
+    return contributors
+
+
 
 @router.get("/{contributor_id}")
 async def get_contributor(contributor_id: str, db: AsyncSession = Depends(get_db)):
