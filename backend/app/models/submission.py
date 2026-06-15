@@ -9,7 +9,7 @@ import uuid
 def generate_uuid():
     return str(uuid.uuid4())
 
-class QAstatus(str, enum.Enum):
+class QAStatus(str, enum.Enum):
     PENDING = "pending"
     PROCESSING = "processing"
     PASSED = "passed"

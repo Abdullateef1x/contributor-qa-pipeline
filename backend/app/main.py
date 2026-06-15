@@ -26,12 +26,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 app.include_router(submissions.router)
 app.include_router(contributors.router)
 
-@app.get("/")
-def health():
-    return {"status": "healthy", "message":"Contributor Qa Pipeline is running"}
 
-
+@app.get("/health")
+async def health():
+    return {"status": "ok", "service": "contributor-qa-pipeline"}

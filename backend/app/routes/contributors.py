@@ -13,7 +13,7 @@ router = APIRouter(prefix="/api/contributors", tags=["contributors"])
 class ContributorCreate(BaseModel):
     name: str
     email: EmailStr
-    county: str
+    country: str
     language: str
 
 
@@ -23,16 +23,24 @@ async def create_contributor(data: ContributorCreate, db: AsyncSession = Depends
     if existing.scalar_one_or_none():
         raise HTTPException(status_code = 409, detail = "Email already registered")
 
-    contributor = contributor(**data.model_dump())
+    contributor = Contributor(**data.model_dump())
     db.add(contributor)
     await db.commit()
     await db.refresh(contributor)
     return contributor
 
 @router.get("/")
-async def list_contributors(data: ContributorCreate, db: AsyncSession = Depends(get_db)):
-    result = await db.execute(select(Contributor)).order_by(Contributor.created_at.desc())
-    contributors = await result.scalars().all()
+async def list_contributors(
+    db: AsyncSession = Depends(get_db)
+):
+    result = await db.execute(
+        select(Contributor).order_by(
+            Contributor.created_at.desc()
+        )
+    )
+
+    contributors = result.scalars().all()
+
     return contributors
 
 
