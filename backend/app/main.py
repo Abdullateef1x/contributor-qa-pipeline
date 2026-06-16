@@ -3,6 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from app.db.database import init_db
 from app.routes import submissions, contributors
+from app.core.config import settings 
+
 
 
 @asynccontextmanager
@@ -18,9 +20,17 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+if settings.environment == "production":
+
+    if not settings.frontend_url or settings.frontend_url == "*":
+        raise ValueError("PROD ERROR: settings.frontend_url must be a specific secure website URL!")
+    allowed_origins = [settings.frontend_url]
+else:
+    allowed_origins = ["http://localhost:3000", "http://localhost:5173"]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:5173"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

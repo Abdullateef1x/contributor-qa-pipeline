@@ -1,4 +1,4 @@
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 from typing import Optional
 
 
@@ -14,6 +14,9 @@ class Settings(BaseSettings):
     redis_url: str = "redis://localhost:6379/0"
     secret_key: str = "dev-secret-key"
     environment: str = "development"
+    frontend_url: Optional[str] = None
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
+
 
     class Config:
         env_file = ".env"

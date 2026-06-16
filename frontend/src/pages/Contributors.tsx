@@ -13,7 +13,6 @@ export default function Contributors() {
     queryFn: getContributors,
   });
 
-  console.log(contributors)
 
   const mutation = useMutation({
     mutationFn: createContributor,
