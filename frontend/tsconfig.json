@@ -6,6 +6,6 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "types": ["vite/client"]         
+    "types": ["vite/client", "node"]               
   }
 }
