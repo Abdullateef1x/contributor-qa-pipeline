@@ -419,6 +419,24 @@ This forms the foundation of an evaluation loop used to continuously monitor dat
 * Queue monitoring
 * Processing latency dashboards
 
+## Running with Docker
+
+### Backend
+
+```bash
+docker build -t contributor-qa-backend .
+docker run -p 8000:8000 contributor-qa-backend
+```
+
+### Full Stack
+
+```bash
+docker-compose up --build
+```
+
+The application can also be deployed independently using Railway (backend) and Vercel (frontend).
+
+
 ---
 
 # 👨‍💻 Author
