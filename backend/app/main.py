@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from app.db.database import init_db
 from app.routes import submissions, contributors
-from app.core.config import settings 
+from app.config import settings 
 
 
 
