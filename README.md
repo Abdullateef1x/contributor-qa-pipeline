@@ -11,9 +11,10 @@
 ![Groq](https://img.shields.io/badge/Groq-LLM-purple)
 ![Tests](https://img.shields.io/badge/Tests-13%20Passing-success)
 
-🌐 **Live Demo:** https://your-vercel-url.vercel.app
+🌐 **Live Demo:** [https://contributor-qa-pipeline.vercel.app](https://contributor-qa-pipeline.vercel.app)
 
-📖 **API Docs:** https://your-railway-url.up.railway.app/docs
+📖 **API Docs:** [https://contributor-qa-pipeline.onrender.com/docs](https://contributor-qa-pipeline.onrender.com/docs)
+
 
 ---
 
